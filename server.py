@@ -1,28 +1,14 @@
-import socket 
-import os
+import socket
+import threading
+import functions.myserver as myserver
 
-def showmessage(message):
-    print(f"client: {message}")
+HOST = input("Digite o ip: ")
+PORT = int(input("Digite a porta: "))
+ADDR = (HOST, PORT) # tupla para passar de parametro no metodo bind
 
-host = input("Digite o ip do servidor: ")
-port = int(input("Digite a porta do servidor: "))
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # AF_INET --> conexao por ipv4, SOCK_STREAM --> envio de sockets
+server.bind(ADDR)
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind((host, port))
-s.listen(5)
+print("[INICIANDO] servidor esta iniciando...")
 
-clientsocket, adr = s.accept()
-
-os.system('cls')
-
-print(f"Server running on {host}:{port}")
-
-while True:
-    msg = clientsocket.recv(1024).decode('utf-8')
-    if(msg):
-        if(msg == 'Desconectar servidor'):
-            print('Desconectando servidor...')
-            break
-        showmessage(msg)
-
-s.close()
+myserver.start(server, HOST, PORT)
