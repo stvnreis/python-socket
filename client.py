@@ -1,14 +1,15 @@
 import socket
+import os
 
-print("Client")
-print("Digite localhost para teste local ou o Ip do servidor:")
-host = input()
-
-print("Digite a porta do servidor:")
-port = int(input())
+host = input("Digite o ip do servidor: ")
+port = int(input("Digite a porta do servidor: "))
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((host, port))
+
+os.system('cls')
+
+print(f"Conectado em {host}:{port}")
 
 while True:
     message = input()
