@@ -14,7 +14,7 @@ print(f"Conectado em {host}:{port}")
 while True:
     message = input()
     
-    if(message == "SAIR"):
+    if(message == "sair"):
         s.send(bytes("Encerrando conexão", "utf-8"))
         break
     

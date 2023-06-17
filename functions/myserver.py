@@ -8,13 +8,14 @@ def handle_client(conn, addr):
     while connected:
         msg = conn.recv(2048).decode("utf-8") # recebendo mensagens de 2048 bytes com codificacao utf-8
 
-        if msg == '!DISCONECTAR':
+        if msg == 'sair':
             connected = False
             print(f"Encerrando conexao com client {addr}")
             continue
         if msg:
             print(f"[{addr}]: {msg}")
     
+    print(f"[CONEXOES ATIVAS] {threading.activeCount()-1}\n")
     conn.close()
 
 def start(server, HOST, PORT):
