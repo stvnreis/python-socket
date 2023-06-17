@@ -15,7 +15,7 @@ while True:
     message = input()
     
     if(message == "sair"):
-        s.send(bytes("Encerrando conexão", "utf-8"))
+        s.send(bytes(message, "utf-8"))
         break
     
     s.send(bytes(message, "utf-8"))
